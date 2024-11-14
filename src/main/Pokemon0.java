@@ -6,7 +6,7 @@ public class Pokemon0 {
 	//ATTRIBUTS
 	private String nom;
 	private int niveau;
-	private int hp;
+	private double hp;
 	private double atk;
 	
 	//CONSTRUCTEUR
@@ -40,7 +40,10 @@ public class Pokemon0 {
 		return hp == 0;
 	}
 	
-	
+	public void attaquer(Pokemon0 p) {
+		double hp = p.hp;
+		hp -= this.atk;
+	}
 	
 	
 }
