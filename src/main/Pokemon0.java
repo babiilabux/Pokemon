@@ -27,7 +27,7 @@ public class Pokemon0 {
 		return niveau;
 	}
 
-	public int getHp() {
+	public double getHp() {
 		return hp;
 	}
 
@@ -36,14 +36,31 @@ public class Pokemon0 {
 	}
 	
 	//METHODES
+	// Retourne True si le Pokemon a 0 hp
 	public boolean isKO() {
 		return hp == 0;
 	}
 	
+	// Un Pokemon fait des dégats à un autre Pokemon
 	public void attaquer(Pokemon0 p) {
 		double hp = p.hp;
 		hp -= this.atk;
 	}
+	
+	// Restaure les hp de base du Pokemon
+	public void soigner() {
+		this.hp = niveau * 2;
+	}
+	
+	public void log(String msg) {
+		System.out.println(this.nom + " - " + msg);
+	}
+	
+	// METHODE TOSTRING
+	public String toString() {
+		return "Nom : " + this.nom + "Niveau : " + this.niveau + "HP : " + this.hp + "Attaque : " + this.atk;
+	}
+	
 	
 	
 }
