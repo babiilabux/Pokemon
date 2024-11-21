@@ -2,20 +2,23 @@ package main;
 
 import java.util.Random;
 
-public class Pokemon0 {
+public abstract class Pokemon {
 	//ATTRIBUTS
 	private String nom;
 	private int niveau;
-	private double hp;
-	private double atk;
+	protected int hp;
+	private int atk;
+	private static Random random = new Random();// Création de la seed random pour garder la même dans toute la classe 
+	private static int niveaumax = 10;// Définition d'un niveau max 
+	private String type; 
 	
 	//CONSTRUCTEUR
-	public Pokemon0(String nom) {
+	public Pokemon(String nom, String type) {
 		this.nom = nom;
-		Random random = new Random();
-		this.niveau = random.nextInt(10);
+		this.niveau = random.nextInt(niveaumax);
 		this.hp = this.niveau * 2;
 		this.atk = (this.niveau / 2) + 1;
+		this.type = type; 
 	}
 	
 	//GETTERS
@@ -27,12 +30,16 @@ public class Pokemon0 {
 		return niveau;
 	}
 
-	public double getHp() {
+	public int getHp() {
 		return hp;
 	}
 
-	public double getAtk() {
+	public int getAtk() {
 		return atk;
+	}
+	
+	public String getType() {
+		return type;
 	}
 	
 	//METHODES
@@ -41,15 +48,14 @@ public class Pokemon0 {
 		return hp == 0;
 	}
 	
-	// Un Pokemon fait des dégats à un autre Pokemon
-	public double attaquer(Pokemon0 p) {
-		double hp = p.hp - this.atk;
-		return p.hp = hp;
-	}
+	// Un Pokemon fait des dégats à un autre Pokemon (abstraite)
+	public abstract void attaquer(Pokemon p);
+	
+	public abstract void subir(Pokemon p);
 	
 	// Restaure les hp de base du Pokemon
 	public void soigner() {
-		this.hp = this.niveau * 2;
+		this.hp = niveau * 2;
 	}
 	
 	public void log(String msg) {
